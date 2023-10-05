@@ -9,7 +9,6 @@ splash()
 
 open = 0
 closed = 1
-targets = []
 def is_open(n):
     if n==open:
         return True
@@ -23,11 +22,10 @@ def is_closed(n):
         return False 
 
 def new_targets():
-    global targets
     targets = []
     for x in range(5):
         targets.append(open)
-    print(targets)
+    return targets
     
 def close_target(targets, position):
     targets[position] = closed
@@ -50,7 +48,7 @@ def targets_to_string(targets):
     return s
 def view_targets(targets):
     for x in range(len(targets)):
-        print(x, end="")
+        print (str(x+1) + " ", end="")
     print()
     print (targets_to_string(targets))
     
@@ -60,16 +58,34 @@ def random_hit():
     else:
         return False
     
-def shoot(targets, position):
+def shoot(targets):
+    position = input()
+    parsed_position = parse_target(position)
     hitOrNot = random_hit()
-    if not hitOrNot:
-        return "Miss"
-    elif is_open(targets[position]) and hitOrNot:
-        close_target(targets, position)
-        return "Hit on open target" 
+    
+    if parsed_position > 0 and parsed_position <= len(targets):   
+        if not hitOrNot:
+            return "Miss"
+        elif is_open(targets[parsed_position-1]) and hitOrNot:
+            close_target(targets, parsed_position-1)
+            return "Hit on open target" 
+        else:
+            return "Hit on closed target"
     else:
-        return "Hit on closed target"
-
+        print("ogiltigt val")
+    
 def parse_target(string):
     if string.isnumeric():
-        return int(string) + 1
+        return int(string)
+    
+    
+def aim(targets):
+    string = input("Sikta på mål: ")
+    if string.isnumeric():
+        position = int(string) + 1
+        print(shoot(targets,position))
+    else:
+        print("Ogiltigt")
+    
+targets = new_targets()
+        
