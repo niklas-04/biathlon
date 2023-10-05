@@ -23,6 +23,8 @@ def is_closed(n):
         return False 
 
 def new_targets():
+    global targets
+    targets = []
     for x in range(5):
         targets.append(open)
     print(targets)
