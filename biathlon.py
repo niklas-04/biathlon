@@ -49,7 +49,8 @@ def targets_to_string(targets):
             s = s + "0 "
     return s
 def view_targets(targets):
-    print ("1 2 3 4 5")
+    for x in range(len(targets)):
+        print(x, end="")
     print()
     print (targets_to_string(targets))
     
@@ -69,4 +70,6 @@ def shoot(targets, position):
     else:
         return "Hit on closed target"
 
-        
+def parse_target(string):
+    if string.isnumeric():
+        return int(string) + 1
