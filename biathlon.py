@@ -79,13 +79,5 @@ def parse_target(string):
         return int(string)
     
     
-def aim(targets):
-    string = input("Sikta på mål: ")
-    if string.isnumeric():
-        position = int(string) + 1
-        print(shoot(targets,position))
-    else:
-        print("Ogiltigt")
-    
 targets = new_targets()
         
