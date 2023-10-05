@@ -49,7 +49,7 @@ def targets_to_string(targets):
             s = s + "0 "
     return s
 def view_targets(targets):
-    print ("0 1 2 3 4")
+    print ("1 2 3 4 5")
     print()
     print (targets_to_string(targets))
     
